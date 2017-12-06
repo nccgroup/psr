@@ -237,7 +237,7 @@ int Debugger::WaitForMemoryBreakpoint()
 			//std::cout << "create thread debug event" << std::endl;
 			/*
 			new_thread_handle = lpdebug_event->u.CreateProcessInfo.hThread;
-			new_thread_id = GetThreadId(new_thread_handle); // GetThreadId is fucking up, get error code, find out why
+			new_thread_id = GetThreadId(new_thread_handle); // GetThreadId is messing up, get error code, find out why
 			thread_handles.insert_or_assign(new_thread_id, new_thread_handle);
 			SetTrapFlag(new_thread_id);
 			*/
