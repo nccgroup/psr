@@ -1,3 +1,13 @@
+/*
+Copyright 2017 NCC Group
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #include "stdafx.h"
 #include "Tracer.h"
 #include "debugger.h"
@@ -279,7 +289,7 @@ std::string Tracer::GetRegisterReadFrom(DWORD thread_id, cs_insn insn, const siz
 	unsigned int reg_count = 0;
 
 	std::vector<std::string> my_regs_read;
-	
+
 	cs_regs_access(cs_handle, &insn, regs_read, &read_count, regs_write, &write_count);
 
 	if (read_count > 0)
@@ -447,7 +457,7 @@ size_t Tracer::FindMostRecentOccurenceOfValueInTrace(DWORD thread_id, DWORD valu
 				// just decrement ins iterator and grab prev instruction
 				size_t prev_trace_pos = trace_pos - 1;
 				instruction_info prev_insn_info = run_trace.at(prev_trace_pos);
-				
+
 				address = std::get<0>(prev_insn_info);
 				raw_insn = std::get<1>(prev_insn_info);
 

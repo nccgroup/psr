@@ -1,3 +1,13 @@
+/*
+Copyright 2017 NCC Group
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #include "stdafx.h"
 #include "debugger.h"
 #include <iostream>
@@ -191,7 +201,7 @@ int Debugger::WaitForMemoryBreakpoint()
 				SetTrapFlag(offending_thread_ID);
 				ContinueDebugEvent(lpdebug_event->dwProcessId, lpdebug_event->dwThreadId, DBG_CONTINUE);
 
-				// wait a little bit before setting the mem bp again so the target program can get 
+				// wait a little bit before setting the mem bp again so the target program can get
 				// past the instruction that triggered the guard page violation. otherwise the target
 				// program gets stuck on the same instruction over and over. should play around with
 				// the amount of sleep time for optimal performance
@@ -213,7 +223,7 @@ int Debugger::WaitForMemoryBreakpoint()
 				tracer->SaveInstruction(instruction_buffer, offending_thread_ID, thread_context);
 
 				SetTrapFlag(offending_thread_ID);
-				
+
 				break;
 
 			default:
@@ -351,8 +361,8 @@ int Debugger::SetTrapFlag(DWORD thread_id)
 	if (thread_handles.find(thread_id) != thread_handles.end())
 	{
 		thread_handle = thread_handles[thread_id];
-	} 
-	else 
+	}
+	else
 	{
 		thread_handle = OpenThread(THREAD_ALL_ACCESS, FALSE, thread_id);
 
@@ -507,12 +517,12 @@ BOOL Debugger::ListProcessThreads(DWORD dwOwnerPID)
 	HANDLE hThreadSnap = INVALID_HANDLE_VALUE;
 	THREADENTRY32 te32;
 
-	// Take a snapshot of all running threads  
+	// Take a snapshot of all running threads
 	hThreadSnap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
 	if (hThreadSnap == INVALID_HANDLE_VALUE)
 		return(FALSE);
 
-	// Fill in the size of the structure before using it. 
+	// Fill in the size of the structure before using it.
 	te32.dwSize = sizeof(THREADENTRY32);
 
 	// Retrieve information about the first thread,
