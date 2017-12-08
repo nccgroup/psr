@@ -1,4 +1,4 @@
-# pointer-chain-reversal
+# pointer sequence reverser
 
 Designed to help a reverse engineer easily see how a Windows C++ application is accessing a particular data member or object.
 
